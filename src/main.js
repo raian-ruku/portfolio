@@ -8,7 +8,11 @@ function MainIndex() {
   const ref = useRef(null);
   const isInView = useInView(ref);
   const [theme, setTheme] = useState(localStorage.getItem('theme'));
-
+  useEffect(() => {
+    if (!localStorage.getItem('theme')) {
+      localStorage.setItem('theme', 'light');
+    }
+  }, [])
 
   useEffect(() => {
 
