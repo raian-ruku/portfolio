@@ -1,63 +1,67 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
-import NavBar from './navbar';
+import { motion, useInView } from "framer-motion";
 
+import React, { useEffect, useRef } from "react";
+import NavBar from "./navbar";
 
-
-function MainIndex() {
+function MainIndex({ theme, setTheme, textColor }) {
   const ref = useRef(null);
   const isInView = useInView(ref);
-  const [theme, setTheme] = useState(localStorage.getItem('theme'));
-  useEffect(() => {
-    if (!localStorage.getItem('theme')) {
-      localStorage.setItem('theme', 'light');
-    }
-  }, [])
+  // const [theme, setTheme] = useState(localStorage.getItem('theme'));
+  // useEffect(() => {
+  //   if (!localStorage.getItem('theme')) {
+  //     localStorage.setItem('theme', 'light');
+  //   }
+  // }, [])
+
+  // useEffect(() => {
+
+  //   const storedDarkMode = localStorage.getItem('theme')
+  //   // setTheme(storedDarkMode)
+
+  //   if (storedDarkMode === 'dark') {
+  //     document.documentElement.classList.add('dark')
+  //   }
+  //   else {
+  //     document.documentElement.classList.remove('dark')
+  //   }
+
+  // }, [theme])
 
   useEffect(() => {
-
-    const storedDarkMode = localStorage.getItem('theme')
-    // setTheme(storedDarkMode)
-
-    if (storedDarkMode === 'dark') {
-      document.documentElement.classList.add('dark')
-    }
-    else {
-      document.documentElement.classList.remove('dark')
-    }
-
-  }, [theme])
-
-  useEffect(() => {
-
     // console.log("in view 1", isInView);
-  }, [isInView])
-
+  }, [isInView]);
 
   // const textColor = theme ? 'text-darkorange' : "text-navlight"
 
-  const [textColor, setTextColor] = useState('text-navlight');
+  // const [textColor, setTextColor] = useState('text-navlight');
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    theme === 'dark' ? setTextColor('text-darkorange') : setTextColor("text-navlight")
+  //   theme === 'dark' ? setTextColor('text-darkorange') : setTextColor("text-navlight")
 
-  }, [theme])
+  // }, [theme])
 
+  const darkMode = localStorage.getItem("theme") === "dark";
 
-
-
+  const textColor1 = darkMode ? "text-darkorange" : "text-navlight";
 
   return (
-    <div ref={ref} className='body  scroll-smooth overflow-x-hidden dark:bg-dark' style={{ transition: 'background-color 1s' }}>
+    <div
+      ref={ref}
+      className="overflow-x-hidden body scroll-smooth dark:bg-dark"
+      style={{ transition: "background-color 1s" }}
+    >
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      {isInView && <NavBar theme={theme} setTheme={setTheme} textColor={textColor} />}
-      <motion.div className=' w-full bg-light h-screen  ' initial={{ opacity: 0 }} transition={{ duration: 1 }}></motion.div>
-
-
+      {isInView && (
+        <NavBar theme={theme} setTheme={setTheme} textColor={textColor1} />
+      )}
+      <motion.div
+        className="w-full h-screen bg-light"
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      ></motion.div>
     </div>
-  )
+  );
 }
 
-export default MainIndex
-
+export default MainIndex;

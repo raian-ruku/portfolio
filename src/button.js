@@ -1,9 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 function Button({ text, textColor, onClick }) {
   const btnRef = useRef(null);
-
-
 
   useEffect(() => {
     if (btnRef.current) {
@@ -13,13 +11,13 @@ function Button({ text, textColor, onClick }) {
         const x = e.pageX - btn.offsetLeft;
         const y = e.pageY - btn.offsetTop;
 
-        btn.style.setProperty('--x', x + 'px');
-        btn.style.setProperty('--y', y + 'px');
+        btn.style.setProperty("--x", x + "px");
+        btn.style.setProperty("--y", y + "px");
       };
     }
   }, []);
 
-useEffect(() => {
+  useEffect(() => {
     if (btnRef.current) {
       const btn = btnRef.current;
 
@@ -31,20 +29,37 @@ useEffect(() => {
     }
   }, [onClick]);
 
-
-  const hoverColor = textColor === 'text-navlight' ? 'hover:text-navlightdark'  : textColor === 'text-navlightdark'  ? 'hover:text-navlight' : textColor === 'text-darkorange' ? 'hover:text-dark' : textColor === "text-dark" ? "hover:text-darkorange" : 'hover:text-red-500';
-const backgroundColor = textColor === 'text-navlight' ? 'before:bg-navlight'  : textColor === 'text-navlightdark'  ? 'before:bg-navlightdark' : textColor === 'text-darkorange' ? 'before:bg-darkorange' : textColor=== "text-dark" ? "before:bg-dark" : 'before:bg-red-500';
-// console.log("hc", hoverColor);
-// console.log("tc", textColor);
-// console.log("bc", backgroundColor);
+  const hoverColor =
+    textColor === "text-navlight"
+      ? "hover:text-navlightdark"
+      : textColor === "text-navlightdark"
+      ? "hover:text-navlight"
+      : textColor === "text-darkorange"
+      ? "hover:text-dark"
+      : textColor === "text-dark"
+      ? "hover:text-darkorange"
+      : "hover:text-red-500";
+  const backgroundColor =
+    textColor === "text-navlight"
+      ? "before:bg-navlight"
+      : textColor === "text-navlightdark"
+      ? "before:bg-navlightdark"
+      : textColor === "text-darkorange"
+      ? "before:bg-darkorange"
+      : textColor === "text-dark"
+      ? "before:bg-dark"
+      : "before:bg-red-500";
+  // console.log("hc", hoverColor);
+  // console.log("tc", textColor);
+  // console.log("bc", backgroundColor);
 
   return (
     <div
       ref={btnRef}
-      className={`btn m-10 overflow-hidden  before:translate-y-[-50%] before:translate-x-[-50%] relative inline-flex px-4 py-1 bg-transparent tracking-widest before:absolute before:w-0 before:top-[var(--y)] before:left-[var(--x)] before:h-0 before:rounded-full rounded-full ${backgroundColor} ${hoverColor} hover:before:h-[400px] hover:before:w-[400px] select-none`}
-      style={{ transition: 'color 0.5s' }}
+      className={`btn relative m-10  inline-flex overflow-hidden rounded-full bg-transparent px-4 py-1 tracking-widest before:absolute before:left-[var(--x)] before:top-[var(--y)] before:h-0 before:w-0 before:translate-x-[-50%] before:translate-y-[-50%] before:rounded-full ${backgroundColor} ${hoverColor} select-none hover:before:h-[400px] hover:before:w-[400px]`}
+      style={{ transition: "color 0.5s" }}
     >
-      <span className='z-50'>{text}</span>
+      <span className="z-50">{text}</span>
     </div>
   );
 }
