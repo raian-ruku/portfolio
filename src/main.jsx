@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 import React, { useEffect, useRef } from "react";
 import NavBar from "./navbar";
 
-function MainIndex({ theme, setTheme, textColor }) {
+function MainIndex(props) {
   const ref = useRef(null);
   const isInView = useInView(ref);
   // const [theme, setTheme] = useState(localStorage.getItem('theme'));
@@ -53,7 +53,11 @@ function MainIndex({ theme, setTheme, textColor }) {
     >
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       {isInView && (
-        <NavBar theme={theme} setTheme={setTheme} textColor={textColor1} />
+        <NavBar
+          theme={props.theme}
+          setTheme={props.setTheme}
+          textColor={textColor1}
+        />
       )}
       <motion.div
         className="w-full h-screen bg-light"

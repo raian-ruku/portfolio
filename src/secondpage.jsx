@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import NavBar from "./navbar";
 
-function SecondPage({ theme, setTheme, textColor }) {
+function SecondPage(props) {
   const ref = useRef(null);
   const isInView = useInView(ref);
 
@@ -26,7 +26,11 @@ function SecondPage({ theme, setTheme, textColor }) {
         style={{ transition: "background-color 1s" }}
       >
         {isInView && (
-          <NavBar theme={theme} setTheme={setTheme} textColor={textColor2} />
+          <NavBar
+            theme={props.theme}
+            setTheme={props.setTheme}
+            textColor={textColor2}
+          />
         )}
       </motion.div>
     </div>
