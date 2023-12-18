@@ -13,27 +13,28 @@ function SecondPage(props) {
   const darkMode = localStorage.getItem("theme") === "dark";
 
   const textColor2 = darkMode ? "text-dark" : "text-navlightdark";
+  const logoColor = darkMode ? "dark" : "navlightdark";
 
   return (
-    <div ref={ref} className="body overflow-x-hidden scroll-smooth ">
+    <motion.div
+      ref={ref}
+      className="body h-screen w-full bg-lightblack dark:bg-darkorange "
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      style={{ transition: "background-color 1s" }}
+    >
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <motion.div
-        className="h-screen w-full bg-lightblack dark:bg-darkorange"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        style={{ transition: "background-color 1s" }}
-      >
-        {isInView && (
-          <NavBar
-            theme={props.theme}
-            setTheme={props.setTheme}
-            textColor={textColor2}
-          />
-        )}
-      </motion.div>
-    </div>
+      {isInView && (
+        <NavBar
+          theme={props.theme}
+          setTheme={props.setTheme}
+          textColor={textColor2}
+          logoColor={logoColor}
+        />
+      )}
+    </motion.div>
   );
 }
 

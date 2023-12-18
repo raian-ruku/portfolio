@@ -3,10 +3,9 @@ import { motion, useInView } from "framer-motion";
 import React, { useEffect, useRef } from "react";
 import NavBar from "./navbar";
 
-function MainIndex(props) {
+function ThirdPage(props) {
   const ref = useRef(null);
   const isInView = useInView(ref);
-
   // const [theme, setTheme] = useState(localStorage.getItem('theme'));
   // useEffect(() => {
   //   if (!localStorage.getItem('theme')) {
@@ -47,9 +46,9 @@ function MainIndex(props) {
   const textColor1 = darkMode ? "text-darkorange" : "text-navlight";
   const logoColor = darkMode ? "darkorange" : "navlight";
   return (
-    <motion.div
+    <div
       ref={ref}
-      className="overflow-x-hidden body  dark:bg-dark w-full h-screen bg-light"
+      className="overflow-x-hidden body  dark:bg-dark w-full h-screen bg-light "
       style={{ transition: "background-color 1s" }}
     >
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -61,8 +60,13 @@ function MainIndex(props) {
           logoColor={logoColor}
         />
       )}
-    </motion.div>
+      <motion.div
+        className=""
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      ></motion.div>
+    </div>
   );
 }
 
-export default MainIndex;
+export default ThirdPage;

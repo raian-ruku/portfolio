@@ -1,27 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
 
 function Button(props) {
   const btnRef = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  const handleMouse = (e) => {
-    const { clientX, clientY } = e;
-
-    const { height, width, left, top } = btnRef.current.getBoundingClientRect();
-
-    const middleX = clientX - (left + width / 2);
-
-    const middleY = clientY - (top + height / 2);
-
-    setPosition({ x: middleX, y: middleY });
-  };
-
-  const reset = () => {
-    setPosition({ x: 0, y: 0 });
-  };
-
-  const { x, y } = position;
 
   useEffect(() => {
     if (btnRef.current) {
@@ -74,17 +54,13 @@ function Button(props) {
   // console.log("bc", backgroundColor);
 
   return (
-    <motion.div
+    <div
       ref={btnRef}
       className={`btn relative m-10  inline-flex overflow-hidden rounded-full bg-transparent px-4 py-1 tracking-widest before:absolute before:left-[var(--x)] before:top-[var(--y)] before:h-0 before:w-0 before:translate-x-[-50%] before:translate-y-[-50%] before:rounded-full ${backgroundColor} ${hoverColor} select-none hover:before:h-[400px] hover:before:w-[400px]`}
-      style={{ transition: "color 0.5s", position: "relative" }}
-      onMouseMove={handleMouse}
-      onMouseLeave={reset}
-      animate={{ x, y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.5 }}
+      style={{ transition: "color 0.5s" }}
     >
       <span className="z-50">{props.text}</span>
-    </motion.div>
+    </div>
   );
 }
 

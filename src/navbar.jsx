@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./button";
+import Logo from "./logo";
 
 function NavBar(props) {
   const toggleDarkMode = () => {
@@ -13,7 +14,7 @@ function NavBar(props) {
       className={`${props.textColor} flex h-[50px] flex-row justify-between bg-transparent font-lubalin text-[25px] `}
     >
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <img className="bg-orange-500" alt="logo"></img>
+      <Logo logoColor={props.logoColor} />
       <div className="right_components flex flex-row items-center justify-between ">
         <Button text={"about"} textColor={props.textColor} />
         <Button text={"projects"} textColor={props.textColor} />
