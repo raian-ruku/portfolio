@@ -29,19 +29,26 @@ const Preloader = ({ loading }) => {
   useEffect(() => {
     const dynamicLoadingTime = calculateDynamicLoadingTime();
     setLoadingTime(dynamicLoadingTime);
+    console.log("dynamicLoadingTime", dynamicLoadingTime);
 
-    // Simulate loading progress incrementally
-    const interval = setInterval(() => {
-      setLoadingProgress((prevProgress) => prevProgress + 1);
-    }, dynamicLoadingTime * 10); // Adjust the interval based on your desired animation progress rate
+    const handleLoad = () => {
+      setLoadingProgress(100);
+    };
 
-    return () => clearInterval(interval);
-  }, [loading]);
+    window.addEventListener("load", handleLoad);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
+  }, [loading, loadingTime]);
 
   const calculateDynamicLoadingTime = () => {
-    // Implement your logic to determine dynamic loading time
-    // For example, you can calculate based on API requests, assets loading, etc.
-    return 2.5; // Default to 5 seconds if no specific logic is implemented
+    const navigationTiming = performance.getEntriesByType("navigation")[0];
+
+    if (navigationTiming instanceof PerformanceNavigationTiming) {
+      const totalLoadingTime = navigationTiming.domContentLoadedEventEnd / 1000; // Convert milliseconds to seconds
+      return totalLoadingTime;
+    }
   };
 
   return (
