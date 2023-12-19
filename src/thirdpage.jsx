@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-
+import { Element } from "react-scroll";
 import React, { useEffect, useRef } from "react";
 import NavBar from "./navbar";
 
@@ -46,26 +46,28 @@ function ThirdPage(props) {
   const textColor1 = darkMode ? "text-darkorange" : "text-navlight";
   const logoColor = darkMode ? "darkorange" : "navlight";
   return (
-    <div
-      ref={ref}
-      className="overflow-x-hidden body  dark:bg-dark w-full h-screen bg-light "
-      style={{ transition: "background-color 1s" }}
-    >
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      {isInView && (
-        <NavBar
-          theme={props.theme}
-          setTheme={props.setTheme}
-          textColor={textColor1}
-          logoColor={logoColor}
-        />
-      )}
-      <motion.div
-        className=""
-        initial={{ opacity: 0 }}
-        transition={{ duration: 1 }}
-      ></motion.div>
-    </div>
+    <Element name="ThirdPage">
+      <div
+        ref={ref}
+        className="overflow-x-hidden body  dark:bg-dark w-full h-screen bg-light "
+        style={{ transition: "background-color 1s" }}
+      >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {isInView && (
+          <NavBar
+            theme={props.theme}
+            setTheme={props.setTheme}
+            textColor={textColor1}
+            logoColor={logoColor}
+          />
+        )}
+        <motion.div
+          className=""
+          initial={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        ></motion.div>
+      </div>
+    </Element>
   );
 }
 
