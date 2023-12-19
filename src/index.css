@@ -13,6 +13,14 @@
   font-family: "Lubalin";
   src: url("../src/components/LubalinGraphStd-Book.otf");
 }
+@font-face {
+  font-family: "Telegraph";
+  src: url("../src/components/pptelegraf-regular.otf");
+}
+@font-face {
+  font-family: "Telegraph-Bold";
+  src: url("../src/components/pptelegraf-ultrabold.otf");
+}
 
 @layer components {
   .btn::before {
