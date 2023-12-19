@@ -20,7 +20,7 @@ function MainIndex(props) {
     <Element name="mainIndex">
       <motion.div
         ref={ref}
-        className="overflow-x-hidden body  dark:bg-dark w-full h-screen bg-light"
+        className=" body  dark:bg-dark w-full h-screen bg-light "
         style={{ transition: "background-color 1s" }}
       >
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -49,7 +49,6 @@ function App() {
 
   return (
     <div className="">
-      {/* Use the Preloader component while loading is true */}
       {loading ? (
         <Preloader theme={theme} />
       ) : (
