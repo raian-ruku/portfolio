@@ -48,24 +48,27 @@ function App() {
   // }, [theme]);
 
   return (
-    <div className="">
+    <div className="h-screen w-full  ">
       {loading ? (
         <Preloader theme={theme} />
       ) : (
         <AnimatePresence>
           <MainIndex
+            key="main"
             theme={theme}
             setTheme={setTheme}
             textColor={textColor}
             logoColor={logoColor}
           />
           <SecondPage
+            key="second"
             theme={theme}
             setTheme={setTheme}
             textColor={textColor}
             logoColor={logoColor}
           />
           <ThirdPage
+            key="third"
             theme={theme}
             setTheme={setTheme}
             textColor={textColor}
